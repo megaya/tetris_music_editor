@@ -12,8 +12,71 @@ import marked from 'marked';
 export default {
   data() {
     return {
-      input: '# hello',
+      input: '',
+      audios: {
+        do:    new Audio('static/se/do.wav'),
+        re:    new Audio('static/se/re.wav'),
+        mi:    new Audio('static/se/mi.wav'),
+        fa:    new Audio('static/se/fa.wav'),
+        so:    new Audio('static/se/so.wav'),
+        ra:    new Audio('static/se/ra.wav'),
+        ra_hi: new Audio('static/se/ra_hi.wav'),
+        si:    new Audio('static/se/si.wav'),
+      },
+      tetrisMusic: [],
+      tetrisMusicIndex: 0,
     };
+  },
+  created: function() {
+    this.tetrisMusic = [
+      // ミシドレドシ
+      this.audios.mi,
+      this.audios.si,
+      this.audios.do,
+      this.audios.re,
+      this.audios.do,
+      this.audios.si,
+      // ララドミレド
+      this.audios.ra,
+      this.audios.ra,
+      this.audios.do,
+      this.audios.mi,
+      this.audios.re,
+      this.audios.do,
+      // シシドレミドララ
+      this.audios.si,
+      this.audios.si,
+      this.audios.do,
+      this.audios.re,
+      this.audios.mi,
+      this.audios.do,
+      this.audios.ra,
+      this.audios.ra,
+      // レファラソファ
+      this.audios.re,
+      this.audios.fa,
+      this.audios.ra_hi,
+      this.audios.so,
+      this.audios.fa,
+      // ミミドミレド
+      this.audios.mi,
+      this.audios.mi,
+      this.audios.do,
+      this.audios.mi,
+      this.audios.re,
+      this.audios.do,
+      // シシドレミドララ
+      this.audios.si,
+      this.audios.si,
+      this.audios.do,
+      this.audios.re,
+      this.audios.mi,
+      this.audios.do,
+      this.audios.ra,
+      this.audios.ra,
+    ];
+
+    console.log(this.tetrisMusic);
   },
   computed: {
     compiledMarkdown() {
@@ -22,6 +85,9 @@ export default {
   },
   methods: {
     update(e) {
+      this.tetrisMusic[this.tetrisMusicIndex].play();
+      this.tetrisMusicIndex += 1
+      if (this.tetrisMusicIndex >= this.tetrisMusic.length) { this.tetrisMusicIndex = 0 }
       this.input = e.target.value;
     },
   },
