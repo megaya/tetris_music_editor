@@ -75,8 +75,6 @@ export default {
       this.audios.ra,
       this.audios.ra,
     ];
-
-    console.log(this.tetrisMusic);
   },
   computed: {
     compiledMarkdown() {
